@@ -25,6 +25,8 @@ function Login() {
     });
     localStorage.setItem("userName", login.userName);
     localStorage.setItem("password", login.password);
+    console.log("userName", login.userName);
+    console.log("password", login.password);
   };
   return (
     <div>
@@ -38,7 +40,8 @@ function Login() {
           onChange={loginFunc}
           name="userName"
           value={login.userName}
-        />
+        />{" "}
+        <br />
         <label htmlFor="" className="lb2">
           Password:
         </label>
@@ -49,6 +52,7 @@ function Login() {
           name="password"
           value={login.password}
         />
+        <br />
         <button type="submit" className="btn">
           LogIn
         </button>
@@ -60,7 +64,7 @@ function Login() {
           LogOut
         </button>
       </form>
-      <p>{localStorage.getItem("userName")}}</p>
+      <p>{localStorage.getItem("userName")}</p>
       <p>{localStorage.getItem("password")}</p>
     </div>
   );
