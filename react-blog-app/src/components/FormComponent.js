@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
 const abc = RegExp(/^[1-9]?[0-9]{1}$|^100$/);
-const pqr = RegExp(/(Male|Female)/);
+const pqr = RegExp(/(Male|Female|M|m|f|F|male|female)/);
+const z = RegExp(/[a-z]|[A-Z]/);
 
 const validation = ({ error, ...rest }) => {
   let checkValidation = false;
@@ -31,19 +32,19 @@ export default class Form extends Component {
     super(props);
 
     this.state = {
-      fname: "",
-      lname: "",
-      age: "",
-      gender: "",
-      email: "",
-      password: "",
+      FirstName: "",
+      LastName: "",
+      Age: "",
+      Gender: "",
+      Email: "",
+      Password: "",
       error: {
-        fname: "",
-        lname: "",
-        age: "",
-        gender: "",
-        email: "",
-        password: "",
+        FirstName: "",
+        LastName: "",
+        Age: "",
+        Gender: "",
+        Email: "",
+        Password: "",
       },
     };
   }
@@ -65,30 +66,28 @@ export default class Form extends Component {
     let error = { ...this.state.error };
 
     switch (name) {
-      case "fname":
-        error.fname =
-          value.length < 3 ? "Name should be 3 characters long" : "";
+      case "FirstName":
+        error.FirstName = z.test(value) ? "" : " not valid";
         break;
 
-      case "lname":
-        error.lname =
-          value.length < 1 ? "Name should be 1 characters long" : "";
+      case "LastName":
+        error.LastName = z.test(value) ? "" : " not valid";
         break;
 
-      case "age":
-        error.age = abc.test(value) ? "" : "age is not valid";
+      case "Age":
+        error.Age = abc.test(value) ? "" : "age is not valid";
         break;
 
-      case "gender":
-        error.gender = pqr.test(value) ? "" : "gender is not valid";
+      case "Gender":
+        error.Gender = pqr.test(value) ? "" : "gender is not valid";
         break;
 
-      case "email":
-        error.email = regularExpression.test(value) ? "" : "Email is not valid";
+      case "Email":
+        error.Email = regularExpression.test(value) ? "" : "Email is not valid";
         break;
 
-      case "password":
-        error.password =
+      case "Password":
+        error.Password =
           value.length < 8 ? "Password should 8 characters long" : "";
         break;
       default:
@@ -110,84 +109,84 @@ export default class Form extends Component {
           <form className="card-body" onSubmit={this.onFormSubmit}>
             <div className="form-group mb-3">
               <label className="mb-2">
-                <strong>fname</strong>
+                <strong>FirstName</strong>
               </label>
               <input
                 required
                 type="text"
-                name="fname"
+                name="FirstName"
                 onChange={this.formObject}
                 className={
-                  error.fname.length > 0
+                  error.FirstName.length > 0
                     ? "is-invalid form-control"
                     : "form-control"
                 }
               />
-              {error.fname.length > 0 && (
-                <span className="invalid-feedback">{error.fname}</span>
+              {error.FirstName.length > 0 && (
+                <span className="invalid-feedback">{error.FirstName}</span>
               )}
             </div>
 
             <div className="form-group mb-3">
               <label className="mb-2">
-                <strong>lname</strong>
+                <strong>LastName</strong>
               </label>
               <input
                 required
                 type="text"
-                name="lname"
+                name="LastName"
                 onChange={this.formObject}
                 className={
-                  error.lname.length > 0
+                  error.LastName.length > 0
                     ? "is-invalid form-control"
                     : "form-control"
                 }
               />
 
-              {error.lname.length > 0 && (
-                <span className="invalid-feedback">{error.lname}</span>
+              {error.LastName.length > 0 && (
+                <span className="invalid-feedback">{error.LastName}</span>
               )}
             </div>
 
             <div className="form-group mb-3">
               <label className="mb-2">
-                <strong>age</strong>
+                <strong>Age</strong>
               </label>
               <input
                 required
                 type="text"
-                name="age"
+                name="Age"
                 onChange={this.formObject}
                 className={
-                  error.age.length > 0
+                  error.Age.length > 0
                     ? "is-invalid form-control"
                     : "form-control"
                 }
               />
 
-              {error.age.length > 0 && (
-                <span className="invalid-feedback">{error.age}</span>
+              {error.Age.length > 0 && (
+                <span className="invalid-feedback">{error.Age}</span>
               )}
             </div>
 
             <div className="form-group mb-3">
               <label className="mb-2">
-                <strong>gender</strong>
+                <strong>Gender</strong>
               </label>
               <input
                 required
                 type="text"
-                name="gender"
+                name="Gender"
                 onChange={this.formObject}
                 className={
-                  error.gender.length > 0
+                  error.Gender.length > 0
                     ? "is-invalid form-control"
                     : "form-control"
                 }
               />
 
-              {error.gender.length > 0 && (
-                <span className="invalid-feedback">{error.gender}</span>
+              {error.Gender.length > 0 && (
+                <span className="invalid-feedback">{error.Gender}</span>
               )}
             </div>
 
@@ -198,17 +197,17 @@ export default class Form extends Component {
               <input
                 required
                 type="email"
-                name="email"
+                name="Email"
                 className={
-                  error.email.length > 0
+                  error.Email.length > 0
                     ? "is-invalid form-control"
                     : "form-control"
                 }
                 onChange={this.formObject}
               />
 
-              {error.email.length > 0 && (
-                <span className="invalid-feedback">{error.email}</span>
+              {error.Email.length > 0 && (
+                <span className="invalid-feedback">{error.Email}</span>
               )}
             </div>
 
@@ -219,22 +218,22 @@ export default class Form extends Component {
               <input
                 required
                 type="password"
-                name="password"
+                name="Password"
                 className={
-                  error.password.length > 0
+                  error.Password.length > 0
                     ? "is-invalid form-control"
                     : "form-control"
                 }
                 onChange={this.formObject}
               />
 
-              {error.password.length > 0 && (
-                <span className="invalid-feedback">{error.password}</span>
+              {error.Password.length > 0 && (
+                <span className="invalid-feedback">{error.Password}</span>
               )}
             </div>
 
             <div className="d-grid mt-3">
-              <button type="submit" className="btn btn-block btn-primary">
+              <button type="submit" className="btn btn-block btn-success">
                 Submit
               </button>
             </div>

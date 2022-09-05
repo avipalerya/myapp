@@ -1,8 +1,8 @@
 import React from "react";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import Form from "../src/components/form.component";
+
+import Form from "./components/FormComponent";
 
 function App() {
   return (
